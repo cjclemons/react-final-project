@@ -1,13 +1,391 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+* {
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  background-color: #3f3d56;
+}
+
+.container {
+  padding: 40px 0;
+}
+
+.row {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ul {
+  display: flex;
+}
+
+li {
+  list-style-type: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.scarlet {
+  color: #ff2400;
+}
+
+.gold {
+  color: #f9a825;
+}
+
+.link__hover-effect {
+  position: relative;
+}
+
+.link__hover-effect:after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  height: 3px;
+  width: 0;
+  right: 0;
+  background-color: #ff2400;
+  transition: all 300ms ease;
+}
+.link__hover-effect:hover:after {
+  width: 100%;
+  left: 0;
+}
+
+/* NAVIGATION */
+
+.nav {
+  padding: 0 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.homepage__logo {
+  width: 128px;
+  height: 128px;
+}
+
+.nav__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+.nav__links {
+  display: flex;
+}
+
+.nav__link {
+  margin: 0 12px;
+}
+
+.nav__link--anchor,
+.nav__search-link--anchor {
+  font-weight: 600;
+  font-size: 16px;
+  color: #ff2400;
+}
+
+.nav__search-link--anchor {
+  color: white;
+}
+
+.nav__link--primary,
+.nav__search-link--primary {
+  padding: 12px 36px;
+  width: auto;
+  background-color: #ff2400;
+  color: white;
+  line-height: 1.5;
+  border-radius: 50px;
+  transition: all 300ms ease;
+}
+
+.nav__search-link--primary {
+  background-color: white;
+  color: #ff2400;
+}
+
+.nav__search-link--primary:hover {
+  background-color: #f9a825;
+}
+
+.nav__link--primary:hover {
+  background-color: #cb4154;
+}
+
+.link__hover-effect--scarlet:after {
+  background-color: #ff2400;
+}
+
+.link__hover-effect--white:after {
+  background-color: white;
+}
+
+/* HOMEPAGE */
+
+.homepage__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.header__contact {
+  display: flex;
+  flex-direction: column;
+}
+.header__title {
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header__sub-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+  line-height: 1.5;
+  margin-bottom: 40px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.input__wrapper {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.home__input {
+  padding: 0 16px 0 24px;
+  font-size: 24px;
+  width: 80%;
+  border-radius: 16px;
+  border: 1px solid white;
+  color: #3f3d56;
+  transition: border-color 200ms
+    cubic-bezier(cubic-bezier(0.455, 0.03, 0.515, 0.955));
+  height: 80px;
+  line-height: 32px;
+  outline: none;
+}
+
+.input__btn {
+  width: 20%;
+  margin-left: 20px;
+  color: white;
+  border: 1px solid #ff2400;
+  background-color: #ff2400;
+  border-radius: 20px;
+  font-size: 40px;
+  box-shadow: 7px 7px 14px rgba(134, 93, 204, 0.3);
+  transition: all 300ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input__btn:hover {
+  background-color: #f9a825;
+  border: 1px solid #f9a825;
+}
+
+.homepage__img {
+  height: 50vh;
+}
+
+/* SEARCHPAGE */
+
+.searchpage {
+  display: flex;
+  flex-direction: column;
+}
+
+.search__nav {
+  flex-direction: column;
+  height: 50%;
+  display: flex;
+  padding: 16px 0 40px 0;
+}
+
+.search__logo {
+  width: 80px;
+  height: 80px;
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search__title {
+  width: 100%;
+  font-weight: 500;
+  text-align: center;
+  font-size: 48px;
+  margin-bottom: 40px;
+  color: white;
+  letter-spacing: 0.1em;
+}
+
+.search__input--wrapper {
+  width: 100%;
+  max-width: 640px;
+  border-radius: 48px;
+  overflow: hidden;
+  position: relative;
+}
+
+.search__input {
+  color: rgba(0, 0, 0, 0.87);
+  width: 100%;
+  max-width: 720px;
+  height: 64px;
+  font-size: 20px;
+  padding-left: 20px;
+}
+
+.search__icon {
+  padding: 0 20px 0 8px;
+  color: #ff2400;
+  font-size: 32px;
+  cursor: pointer;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  transition: all 300ms ease;
+  position: absolute;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+}
+
+.search__icon:hover {
+  color: #f9a825;
+}
+
+.overlay {
+  background-image: url("https://img.favpng.com/9/24/2/light-theater-drapes-and-stage-curtains-red-clip-art-png-favpng-i96QMFs76LkW5X5U5qeL7Zk2S.jpg");
+  position: absolute;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: cover;
+  width: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  height: 50vh;
+}
+
+#search {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.search__filter-results {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.search__results {
+  padding: 20px 0;
+  font-size: 28px;
+  line-height: 1.25;
+  color: white;
+}
+
+select {
+  padding: 0 16px;
+  width: 100%;
+  max-width: 240px;
+  border-radius: 4px;
+  border: 1px solid #dcdfe6;
+  color: gray;
+  height: 40px;
+  line-height: 40px;
+  outline: none;
+}
+
+/* .movies {
+  padding-top: ;
+} */
+
+.movies-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie {
+  margin: 8px;
+  padding: 16px;
+  width: calc(100% / 4);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #3f3d56;
+  box-shadow: 0 4px 8px 0 rgba(134, 93, 204, 0.3);
+  border-radius: 8px;
+}
+
+h4 {
+  text-align: center;
+}
+
+.movie__img {
+  width: 50%;
+  height: 160px;
+}
+
+.movie-year {
+  color: white;
+}
+
+.movies__loading--spinner {
+  font-size: 40px;
+  color: #f9a825;
+}
+
+.fa-spinner {
+  animation: rotate 600ms infinite linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
