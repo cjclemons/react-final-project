@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Nav from "../components/Nav";
 
 import Movies from "../components/Movies";
 import SearchInput from "../components/SearchInput";
 import { useParams } from "react-router-dom";
 
-const Search = () => {
+const Search = ({ keyGlobalParam, setKeyGlobalParam }) => {
   const { keyword } = useParams();
+
+  useEffect(() => {
+    if (keyword && keyGlobalParam !== keyword) {
+      setKeyGlobalParam(keyword);
+    }
+    ;
+  }, [keyword, keyGlobalParam]);
+
+  useEffect(() => {
+    console.log(keyGlobalParam);
+  }, [keyGlobalParam]);
 
   return (
     <>

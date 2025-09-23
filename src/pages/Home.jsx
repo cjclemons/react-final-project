@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UndrawHomeCinema from "../movie assets/undraw_home-cinema_jdm1 scarlet red.svg";
 import { useNavigate, useParams } from "react-router-dom";
 
-const Home = () => {
+const Home = ({setKeyGlobalParam}) => {
   let navigate = useNavigate();
 
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -17,6 +17,7 @@ const Home = () => {
     }
     setLoading(true);
     setTimeout(() => {
+      setKeyGlobalParam(searchKeyword);
       navigate(`/s/${searchKeyword}`);
       setLoading(false);
     }, 1000);

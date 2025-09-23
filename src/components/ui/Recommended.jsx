@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Movie from "./Movie";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const Recommended = () => {
-    const {keyGlobalParam, setKeyGlobalParam} = useContext();
-    const {idGlobalParam, setIdGlobalParam} = useContext();
-  const { keyword, imdbID } = useParams();
+const Recommended = ({keyGlobalParam}) => {
+    
+    
+  const { imdbID } = useParams();
   const [keywordMovies, setKeywordMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [keywordGenre, setKeywordGenre] = useState([]);
@@ -14,15 +14,20 @@ const Recommended = () => {
 
   async function getSelected() {
     const { data } = await axios.get(
-      `http://www.omdbapi.com/?apikey=3fdcdaf3&s=${keyword}`
+      `http://www.omdbapi.com/?apikey=3fdcdaf3&s=${keyGlobalParam}`
     );
     setKeywordMovies(data.Search);
+    console.log(keyGlobalParam);
   }
 
-  const variable = keywordMovies.filter(
-    (result) => keywordMovies.imdbID !== imdbID
-  );
-  console.log(variable);
+  useEffect(() => {
+    getSelected();
+  }, [keyGlobalParam]);
+
+//   const variable = keywordMovies.filter(
+//     (result) => keywordMovies.imdbID !== imdbID
+// //   );
+//   console.log(variable);
 
 //   async function getGenre({ variable }) {
 //     const { keywordinfo } = await axios.get(
