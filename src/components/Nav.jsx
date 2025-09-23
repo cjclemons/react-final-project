@@ -1,8 +1,15 @@
 import React from "react";
 import RMR_logo from "../movie assets/RMR_logo.png";
-import { Link, Links } from "react-router-dom";
+import { Link, Links, useParams } from "react-router-dom";
 
-const Nav = ({ homeRed, homeWhite, homeContact, searchWhite, searchContact }) => {
+const Nav = ({
+  homeRed,
+  homeWhite,
+  homeContact,
+  searchWhite,
+  searchContact,
+}) => {
+  const { keyword } = useParams();
   return (
     <div className="nav">
       <figure>
@@ -15,7 +22,7 @@ const Nav = ({ homeRed, homeWhite, homeContact, searchWhite, searchContact }) =>
           </Link>
         </li>
         <li className="nav__link">
-          <Link to="/s=keyword" className={`${homeWhite} ${searchWhite}`}>
+          <Link to={`/s/${keyword}`} className={`${homeWhite} ${searchWhite}`}>
             Rent your flick
           </Link>
         </li>

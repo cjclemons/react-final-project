@@ -275,6 +275,7 @@ button {
   z-index: 100;
   display: flex;
   align-items: center;
+  justify-content: center;
   background: none;
   border: none;
 }
@@ -388,4 +389,12 @@ h4 {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.quotes::before {
+  content: '"';
+}
+
+.quotes::after {
+  content: '"';
 }

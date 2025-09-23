@@ -11,7 +11,7 @@ function App() {
         <Routes>
           <Route path="/" Component={Home} />
           <Route path="/s/:keyword" Component={Search} />
-          <Route path="/i:id" Component={MovieInfo} />
+          <Route path="/i/:imdbID" Component={MovieInfo} />
         
 
         </Routes>

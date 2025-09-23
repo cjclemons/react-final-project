@@ -1,21 +1,23 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate, useParams } from "react-router-dom";
 
-
 const SearchInput = () => {
-
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [searchKeyword, setSearchKeyword] = useState("");
   const [loading, setLoading] = useState();
   function onSearch(event) {
     event.preventDefault();
+    if (!searchKeyword) {
+      console.log("Search input is empty");
+      return;
+    }
     setLoading(true);
     setTimeout(() => {
       navigate(`/s/${searchKeyword}`);
       setLoading(false);
-    });
+    },2000);
   }
 
   function updateSearch(event) {
