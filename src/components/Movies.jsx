@@ -4,17 +4,18 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import Movie from "./ui/Movie";
 
-const Movies = ({ keyword }) => {
+const Movies = ({ keyGlobalParam }) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   async function getMovies() {
     const { data } = await axios.get(
-      `http://www.omdbapi.com/?apikey=3fdcdaf3&s=${keyword}`
+      `http://www.omdbapi.com/?apikey=3fdcdaf3&s=${keyGlobalParam}`
     );
     
     setMovies(data.Search);
+    
     if (data.Response === "False") {
       alert("No movies found. Please try a different keyword.");
       setMovies([]);
@@ -28,7 +29,7 @@ const Movies = ({ keyword }) => {
       setLoading(false);
     }, 1000);
     return () => clearTimeout(timer);
-  }, [keyword]);
+  }, [keyGlobalParam]);
 
   function filterMovies(filter) {
     if (filter === "OLDEST") {
@@ -48,7 +49,7 @@ const Movies = ({ keyword }) => {
       <div className="search__filter-results">
         <h1 className="search__results">
           Search results: {""}
-          <span className="gold quotes">{keyword ? `${keyword}` : ""}</span>
+          <span className="gold quotes">{keyGlobalParam ? `${keyGlobalParam}` : ""}</span>
         </h1>
         <select
           id="filter"

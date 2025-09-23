@@ -20,12 +20,20 @@ function App() {
             path="/s/:keyword"
             element={
               <Search
-                keyGlobalParam={setKeyGlobalParam}
+                keyGlobalParam={keyGlobalParam}
                 setKeyGlobalParam={setKeyGlobalParam}
               />
             }
           />
-          <Route path="/i/:imdbID" Component={MovieInfo} />
+          <Route
+            path="/i/:imdbID"
+            element={
+              <MovieInfo
+                keyGlobalParam={keyGlobalParam}
+                setKeyGlobalParam={setKeyGlobalParam}
+              />
+            }
+          />
         </Routes>
       </Router>
     </>

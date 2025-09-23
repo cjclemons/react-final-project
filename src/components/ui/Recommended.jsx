@@ -3,9 +3,7 @@ import Movie from "./Movie";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const Recommended = ({keyGlobalParam}) => {
-    
-    
+const Recommended = ({ keyGlobalParam }) => {
   const { imdbID } = useParams();
   const [keywordMovies, setKeywordMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
@@ -17,24 +15,25 @@ const Recommended = ({keyGlobalParam}) => {
       `http://www.omdbapi.com/?apikey=3fdcdaf3&s=${keyGlobalParam}`
     );
     setKeywordMovies(data.Search);
-    console.log(keyGlobalParam);
+    console.log(data.Search);
   }
 
   useEffect(() => {
     getSelected();
-  }, [keyGlobalParam]);
+    console.log(keywordMovies);
+  }, []);
 
-//   const variable = keywordMovies.filter(
-//     (result) => keywordMovies.imdbID !== imdbID
-// //   );
-//   console.log(variable);
+  //   const variable = keywordMovies.filter(
+  //     (result) => keywordMovies.imdbID !== imdbID
+  // //   );
+  //   console.log(variable);
 
-//   async function getGenre({ variable }) {
-//     const { keywordinfo } = await axios.get(
-//       `http://www.omdbapi.com/?apikey=3fdcdaf3&i=${movie.imdbID}`
-//     );
-//     setKeywordGenre(keywordinfo.Genre[0]);
-//   }
+  //   async function getGenre({ variable }) {
+  //     const { keywordinfo } = await axios.get(
+  //       `http://www.omdbapi.com/?apikey=3fdcdaf3&i=${movie.imdbID}`
+  //     );
+  //     setKeywordGenre(keywordinfo.Genre[0]);
+  //   }
 
   //     const {filteredinfo} = await axios.get(
   //         `http://www.omdbapi.com/?apikey=3fdcdaf3&i=${movie.imdbID}`

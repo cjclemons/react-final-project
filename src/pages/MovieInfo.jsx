@@ -5,8 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SelectedMovie from "../components/ui/SelectedMovie";
 import Recommended from "../components/ui/Recommended";
 
-const MovieInfo = () => {
-  const { imdbID, keyword } = useParams();
+const MovieInfo = ({keyGlobalParam}) => {
+  const { imdbID } = useParams();
+  console.log(keyGlobalParam)
 
   return (
     <div>
@@ -25,7 +26,7 @@ const MovieInfo = () => {
             <Link to="/s/${keyword}" className="search__link">
               <FontAwesomeIcon icon="arrow-left" />
             </Link>
-            <Link to={`/s/${keyword}`} className="search__link--text">
+            <Link to={`/s/${keyGlobalParam}`} className="search__link--text">
               <h2 className="">Back to Search Results</h2>
             </Link>
           </div>
@@ -37,7 +38,7 @@ const MovieInfo = () => {
           <div className="movie__selected--top">
             <h2 className="movie__selected--title-top">Recommended</h2>
           </div>
-          <Recommended/>
+          <Recommended keyGlobalParam={keyGlobalParam}/>
         </div>
       </div>
     </div>

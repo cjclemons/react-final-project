@@ -17,7 +17,7 @@ const Search = ({ keyGlobalParam, setKeyGlobalParam }) => {
 
   useEffect(() => {
     console.log(keyGlobalParam);
-  }, [keyGlobalParam]);
+  }, [keyword, keyGlobalParam]);
 
   return (
     <>
@@ -33,7 +33,7 @@ const Search = ({ keyGlobalParam, setKeyGlobalParam }) => {
           <div className="overlay"></div>
         </div>
         <section id="search">
-          <Movies keyword={keyword} />
+          <Movies keyGlobalParam={keyword} />
         </section>
       </div>
     </>
