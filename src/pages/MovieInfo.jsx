@@ -5,9 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SelectedMovie from "../components/ui/SelectedMovie";
 import Recommended from "../components/ui/Recommended";
 
-const MovieInfo = ({keyGlobalParam}) => {
+const MovieInfo = ({ keyGlobalParam }) => {
   const { imdbID } = useParams();
-  console.log(keyGlobalParam)
+  console.log(localStorage.getItem("lastKeyword"));
+  
 
   return (
     <div>
@@ -36,9 +37,9 @@ const MovieInfo = ({keyGlobalParam}) => {
       <div className="container">
         <div className="row">
           <div className="movie__selected--top">
-            <h2 className="movie__selected--title-top">Recommended</h2>
+            <h2 className="movie__selected--title-top">Similar Searched Movies:</h2>
           </div>
-          <Recommended keyGlobalParam={keyGlobalParam}/>
+          <Recommended keyGlobalParam={localStorage.getItem("lastKeyword")} />
         </div>
       </div>
     </div>

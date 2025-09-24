@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate, useParams } from "react-router-dom";
 
-const SearchInput = () => {
+const SearchInput = ({keyword}) => {
   const navigate = useNavigate();
-
   const [searchKeyword, setSearchKeyword] = useState("");
   const [loading, setLoading] = useState();
+
+
+  useEffect(() => {
+      if (searchKeyword !== keyword) {
+        
+        localStorage.setItem("lastKeyword", searchKeyword);
+      }
+      ;
+    }, [searchKeyword,]);
+
   function onSearch(event) {
     event.preventDefault();
     if (!searchKeyword) {

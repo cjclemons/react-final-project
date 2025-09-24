@@ -1,12 +1,12 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-const SelectedMovie = ({imdbID}) => {
+const SelectedMovie = ({ imdbID }) => {
   const [selected, setSelected] = useState([]);
-  
+
   async function getSelected() {
-  const {data} = await axios.get(
+    const { data } = await axios.get(
       `http://www.omdbapi.com/?apikey=3fdcdaf3&i=${imdbID}`
     );
     setSelected(data);
@@ -17,6 +17,21 @@ const SelectedMovie = ({imdbID}) => {
     getSelected();
   }, [imdbID]);
 
+   useEffect(() => {
+    if (selected.Genre && typeof selected.Genre === "string") {
+      const genresArray = selected.Genre.split(',').map(g => g.trim());
+      console.log("Genres:", genresArray);
+    }
+
+    if (selected.Rated) {
+      localStorage.setItem("selectedRated", selected.Rated);
+    }
+    if (selected.Genre) {
+      localStorage.setItem("selectedGenre", selected.Genre.split(',')[0].trim());
+    }
+  }, [selected]);
+  console.log(localStorage.getItem("selectedGenre"));
+
   return (
     <div>
       <div className="movie__selected">
@@ -24,20 +39,22 @@ const SelectedMovie = ({imdbID}) => {
           <img className="movie__selected--img" src={selected.Poster} alt="" />
         </figure>
         <div className="movie__selected--description">
-          <h2 className="movie__selected--title">{selected.Title}</h2>
+          <h2 className="movie__selected--title scarlet">{selected.Title}</h2>
           <div className="movie__3r">
-            <p className="movie__rated">{selected.Rated}</p>
-            <p className="movie__released-date">{selected.Released}</p>
-            <p className="movie__runtime">{selected.Runtime}</p>
+            <p className="movie__rated">Rated: {selected.Rated}</p>
+            <p className="movie__released-date">Released: {selected.Released}</p>
+            <p className="movie__runtime">Runtime: {selected.Runtime}</p>
           </div>
           <div className="movie__genre--ratings">
-            <p className="movie__genre">{selected.Genre}</p>
-            <p className="movie__ratings"></p>
+            <p className="movie__genre">Genre: {selected.Genre}</p>
+            <p className="movie__ratings">Ratings: </p>
           </div>
           <div className="movie__plot">
-            <h3 className="movie__plot--title">Plot</h3>
+            <h3 className="movie__plot--title scarlet">Plot</h3>
             <p className="movie__plot--para">{selected.Plot}</p>
-            <p className="movie__actors">{selected.Actors}</p>
+            <p className="movie__directo">Director: {selected.Director}</p>
+            <p className="movie__writer">Writers: {selected.Writer}</p>
+            <p className="movie__actors">Actors: {selected.Actors}</p>
           </div>
           <button className="btn btn--primary btn--rent">Rent Now</button>
         </div>

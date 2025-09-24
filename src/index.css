@@ -334,9 +334,7 @@ select {
   outline: none;
 }
 
-/* .movies {
-  padding-top: ;
-} */
+
 
 .movies-list {
   width: 100%;
@@ -350,7 +348,7 @@ select {
   margin: 8px;
   padding: 16px;
   width: calc(100% / 4);
-
+  height: 260px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -397,4 +395,32 @@ h4 {
 
 .quotes::after {
   content: '"';
+}
+
+
+.movie__selected {
+  padding: 40px 0;
+  display: flex;
+  
+}
+.movie__selected--img {
+  width: 300px;
+  height: 450px;
+  margin: 16px;
+  
+  box-shadow: 0 4px 8px 0 rgba(134, 93, 204, 0.3);
+}
+.movie__selected--description {
+  color: white;
+  margin:  16px;
+  line-height: 1.5;
+
+}
+.movie__3r {
+  display: flex;
+  justify-content: center;
+  
+  
+  
+  padding: 0 20px;
 }

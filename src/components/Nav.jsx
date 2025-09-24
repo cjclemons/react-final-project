@@ -22,7 +22,7 @@ const Nav = ({
           </Link>
         </li>
         <li className="nav__link">
-          <Link to={`/s/${keyword}`} className={`${homeWhite} ${searchWhite}`}>
+          <Link to={`/s/${localStorage.getItem('lastKeyword')}`} className={`${homeWhite} ${searchWhite}`}>
             Rent your flick
           </Link>
         </li>

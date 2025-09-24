@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Nav from "../components/Nav.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UndrawHomeCinema from "../movie assets/undraw_home-cinema_jdm1 scarlet red.svg";
 import { useNavigate, useParams } from "react-router-dom";
 
-const Home = ({setKeyGlobalParam}) => {
+const Home = ({ setKeyGlobalParam }) => {
   let navigate = useNavigate();
 
   const [searchKeyword, setSearchKeyword] = useState("");
   const [loading, setLoading] = useState();
+  useEffect(() => {
+    if (searchKeyword !== setKeyGlobalParam) {
+      localStorage.setItem("lastKeyword", searchKeyword);
+    }
+  }, [searchKeyword]);
   function onSearch(event) {
     event.preventDefault();
     if (!searchKeyword) {

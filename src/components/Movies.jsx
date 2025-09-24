@@ -8,6 +8,7 @@ const Movies = ({ keyGlobalParam }) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  
 
   async function getMovies() {
     const { data } = await axios.get(
