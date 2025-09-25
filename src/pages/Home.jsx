@@ -10,8 +10,10 @@ const Home = ({ setKeyGlobalParam }) => {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [loading, setLoading] = useState();
   useEffect(() => {
+    if (searchKeyword === 0) return;
     if (searchKeyword !== setKeyGlobalParam) {
       localStorage.setItem("lastKeyword", searchKeyword);
+      
     }
   }, [searchKeyword]);
   function onSearch(event) {

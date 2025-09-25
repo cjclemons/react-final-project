@@ -1,6 +1,6 @@
 import axios from "axios";
-import React, { use, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import Ratings from "./Ratings";
 
 const SelectedMovie = ({ imdbID }) => {
   const [selected, setSelected] = useState([]);
@@ -17,9 +17,9 @@ const SelectedMovie = ({ imdbID }) => {
     getSelected();
   }, [imdbID]);
 
-   useEffect(() => {
+  useEffect(() => {
     if (selected.Genre && typeof selected.Genre === "string") {
-      const genresArray = selected.Genre.split(',').map(g => g.trim());
+      const genresArray = selected.Genre.split(",").map((g) => g.trim());
       console.log("Genres:", genresArray);
     }
 
@@ -27,7 +27,10 @@ const SelectedMovie = ({ imdbID }) => {
       localStorage.setItem("selectedRated", selected.Rated);
     }
     if (selected.Genre) {
-      localStorage.setItem("selectedGenre", selected.Genre.split(',')[0].trim());
+      localStorage.setItem(
+        "selectedGenre",
+        selected.Genre.split(",")[0].trim()
+      );
     }
   }, [selected]);
   console.log(localStorage.getItem("selectedGenre"));
@@ -42,21 +45,23 @@ const SelectedMovie = ({ imdbID }) => {
           <h2 className="movie__selected--title scarlet">{selected.Title}</h2>
           <div className="movie__3r">
             <p className="movie__rated">Rated: {selected.Rated}</p>
-            <p className="movie__released-date">Released: {selected.Released}</p>
+            <p className="movie__released-date">
+              Released: {selected.Released}
+            </p>
             <p className="movie__runtime">Runtime: {selected.Runtime}</p>
           </div>
           <div className="movie__genre--ratings">
             <p className="movie__genre">Genre: {selected.Genre}</p>
-            <p className="movie__ratings">Ratings: </p>
+            <Ratings />
           </div>
           <div className="movie__plot">
             <h3 className="movie__plot--title scarlet">Plot</h3>
             <p className="movie__plot--para">{selected.Plot}</p>
-            <p className="movie__directo">Director: {selected.Director}</p>
+            <p className="movie__director">Director: {selected.Director}</p>
             <p className="movie__writer">Writers: {selected.Writer}</p>
             <p className="movie__actors">Actors: {selected.Actors}</p>
           </div>
-          <button className="btn btn--primary btn--rent">Rent Now</button>
+          <button className="btn btn__rent">Rent Now</button>
         </div>
       </div>
     </div>

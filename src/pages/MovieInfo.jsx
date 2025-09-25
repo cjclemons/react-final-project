@@ -8,7 +8,6 @@ import Recommended from "../components/ui/Recommended";
 const MovieInfo = ({ keyGlobalParam }) => {
   const { imdbID } = useParams();
   console.log(localStorage.getItem("lastKeyword"));
-  
 
   return (
     <div>
@@ -24,10 +23,15 @@ const MovieInfo = ({ keyGlobalParam }) => {
       <div className="container">
         <div className="row">
           <div className="movie__selected--top">
-            <Link to="/s/${keyword}" className="search__link">
-              <FontAwesomeIcon icon="arrow-left" />
+            <Link to={`/s/${keyGlobalParam}`} className="search__link">
+              <button className="search__link--btn">
+                <FontAwesomeIcon icon="arrow-left" className="arrow-left" />
+              </button>
             </Link>
-            <Link to={`/s/${keyGlobalParam}`} className="search__link--text">
+            <Link
+              to={`/s/${keyGlobalParam}`}
+              className="search__link--text gold"
+            >
               <h2 className="">Back to Search Results</h2>
             </Link>
           </div>
@@ -37,7 +41,9 @@ const MovieInfo = ({ keyGlobalParam }) => {
       <div className="container">
         <div className="row">
           <div className="movie__selected--top">
-            <h2 className="movie__selected--title-top">Similar Searched Movies:</h2>
+            <h2 className="movie__selected--title-top scarlet">
+              Similar Searched Movies:
+            </h2>
           </div>
           <Recommended keyGlobalParam={localStorage.getItem("lastKeyword")} />
         </div>

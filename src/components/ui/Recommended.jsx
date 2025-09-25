@@ -9,15 +9,20 @@ const Recommended = ({ keyGlobalParam }) => {
   const [recommendedMovies, setRecommendedMovies] = useState([]);
   const [genreMovies, setGenreMovies] = useState([]);
   const [sortedMovies, setSortedMovies] = useState([]);
-  console.log(keyGlobalParam);
+  const [getKeyGlobalParam, setGetKeyGlobalParam] = useState([]);
 
-  
+  useEffect(() => {
+    setGetKeyGlobalParam(localStorage.getItem("lastKeyword"));
+    console.log(localStorage.getItem("lastKeyword"));
+  },[]);
 
   async function getSelected() {
     const { data } = await axios.get(
-      `http://www.omdbapi.com/?apikey=3fdcdaf3&s=${keyGlobalParam}`
+      `http://www.omdbapi.com/?apikey=3fdcdaf3&s=${
+        keyGlobalParam || getKeyGlobalParam
+      }`
     );
-    setKeywordMovies(data.Search);
+    setKeywordMovies(data.Search || []);
     console.log(data);
   }
 

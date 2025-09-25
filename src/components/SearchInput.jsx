@@ -9,12 +9,14 @@ const SearchInput = ({keyword}) => {
 
 
   useEffect(() => {
+    if (searchKeyword === '') return;
       if (searchKeyword !== keyword) {
         
         localStorage.setItem("lastKeyword", searchKeyword);
+        console.log(localStorage.getItem("lastKeyword"));
       }
       ;
-    }, [searchKeyword,]);
+    }, [searchKeyword]);
 
   function onSearch(event) {
     event.preventDefault();

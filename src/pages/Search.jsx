@@ -9,9 +9,11 @@ const Search = ({ keyGlobalParam, setKeyGlobalParam }) => {
   const { keyword } = useParams();
 
   useEffect(() => {
+    if (keyword === 0) return;
     if (keyword && keyGlobalParam !== keyword) {
       setKeyGlobalParam(keyword);
       localStorage.setItem("lastKeyword", keyword);
+      console.log(localStorage.getItem("lastKeyword"));
     }
     ;
   }, [keyword, keyGlobalParam]);

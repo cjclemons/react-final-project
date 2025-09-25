@@ -8,15 +8,14 @@ const Movies = ({ keyGlobalParam }) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  
 
   async function getMovies() {
     const { data } = await axios.get(
       `http://www.omdbapi.com/?apikey=3fdcdaf3&s=${keyGlobalParam}`
     );
-    
+
     setMovies(data.Search);
-    
+
     if (data.Response === "False") {
       alert("No movies found. Please try a different keyword.");
       setMovies([]);
@@ -36,10 +35,12 @@ const Movies = ({ keyGlobalParam }) => {
     if (filter === "OLDEST") {
       const sortedMovies = [...movies].sort((a, b) => a.Year - b.Year);
       setMovies(sortedMovies);
+      localStorage.setItem("lastKeyword", keyGlobalParam);
     }
     if (filter === "LATEST") {
       const sortedMovies = [...movies].sort((a, b) => b.Year - a.Year);
       setMovies(sortedMovies);
+      localStorage.setItem("lastKeyword", keyGlobalParam);
     } else {
       return;
     }
@@ -50,7 +51,9 @@ const Movies = ({ keyGlobalParam }) => {
       <div className="search__filter-results">
         <h1 className="search__results">
           Search results: {""}
-          <span className="gold quotes">{keyGlobalParam ? `${keyGlobalParam}` : ""}</span>
+          <span className="gold quotes">
+            {keyGlobalParam ? `${keyGlobalParam}` : ""}
+          </span>
         </h1>
         <select
           id="filter"
@@ -73,7 +76,8 @@ const Movies = ({ keyGlobalParam }) => {
               icon="fa-solid fa-spinner"
               className="movies__loading--spinner"
             />
-          ) : ( <Movie movies={movies}/>
+          ) : (
+            <Movie movies={movies} />
           )}
         </div>
       </div>
