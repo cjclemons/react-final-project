@@ -11,25 +11,36 @@ const Movies = ({ keyGlobalParam }) => {
 
   useEffect(() => {
   async function getMovies() {
-    const { data } = await axios.get(
-      `http://www.omdbapi.com/?apikey=3fdcdaf3&s=${keyGlobalParam}`
-    );
+    try {
+      const { data } = await axios.get(
+        `https://www.omdbapi.com/?apikey=3fdcdaf3&s=${keyGlobalParam}`
+      );
 
-    setMovies(data.Search);
+      // Handle no results
+      if (data.Response === "False") {
+        alert("No movies found. Please try a different keyword.");
+        setMovies([]);
+        return;
+      }
 
-    if (data.Response === "False") {
-      alert("No movies found. Please try a different keyword.");
+      // Set results safely
+      setMovies(data.Search || []);
+      
+    } catch (error) {
+      console.error(error);
+      alert("Error fetching movies.");
       setMovies([]);
     }
   }
 
-    setLoading(true);
-    const timer = setTimeout(async () => {
-      await getMovies();
-      setLoading(false);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [keyGlobalParam]);
+  setLoading(true);
+  const timer = setTimeout(async () => {
+    await getMovies();
+    setLoading(false);
+  }, 1000);
+
+  return () => clearTimeout(timer);
+}, [keyGlobalParam]);
 
   function filterMovies(filter) {
     if (filter === "OLDEST") {
