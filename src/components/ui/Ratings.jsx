@@ -6,6 +6,8 @@ const Ratings = () => {
   const { imdbID } = useParams();
   const [rating, setRating] = useState([]);
   const [imdbRatings, setImdbRatings] = useState([]);
+
+  useEffect(() => {
   async function getSelectedRating() {
     const { data } = await axios.get(
       `http://www.omdbapi.com/?apikey=3fdcdaf3&i=${imdbID}`
@@ -13,7 +15,6 @@ const Ratings = () => {
     setRating(data);
     console.log(Object.values(data.Ratings[0])[1]);
   }
-  useEffect(() => {
     getSelectedRating();
   }, [imdbID]);
 

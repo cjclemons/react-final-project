@@ -1,6 +1,6 @@
 import React from "react";
 import RMR_logo from "../movie assets/RMR_logo.png";
-import { Link, Links, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Nav = ({
@@ -17,7 +17,7 @@ const Nav = ({
     document.body.classList.remove("menu--open");
   }
 
-  const { keyword } = useParams();
+  
   return (
     <div className="nav">
       <figure>
@@ -41,7 +41,7 @@ const Nav = ({
           <Link to="#" className={`${homeContact} ${searchContact}`}>
             Contact
           </Link>
-        </li>
+        </li> 
       </ul>
       <button className="btn__menu" onClick={openMenu}>
         <FontAwesomeIcon icon="bars" />

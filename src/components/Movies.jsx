@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+
 import Movie from "./ui/Movie";
 
 const Movies = ({ keyGlobalParam }) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  
 
+  useEffect(() => {
   async function getMovies() {
     const { data } = await axios.get(
       `http://www.omdbapi.com/?apikey=3fdcdaf3&s=${keyGlobalParam}`
@@ -22,7 +23,6 @@ const Movies = ({ keyGlobalParam }) => {
     }
   }
 
-  useEffect(() => {
     setLoading(true);
     const timer = setTimeout(async () => {
       await getMovies();

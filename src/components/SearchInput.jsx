@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SearchInput = ({keyword}) => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const SearchInput = ({keyword}) => {
         console.log(localStorage.getItem("lastKeyword"));
       }
       ;
-    }, [searchKeyword]);
+    }, [searchKeyword, keyword]);
 
   function onSearch(event) {
     event.preventDefault();
