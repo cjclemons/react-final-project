@@ -15,8 +15,7 @@ const Search = ({ keyGlobalParam, setKeyGlobalParam }) => {
       localStorage.setItem("lastKeyword", keyword);
       console.log(localStorage.getItem("lastKeyword"));
     }
-    ;
-  }, [keyword, keyGlobalParam]);
+  }, [keyword, keyGlobalParam, setKeyGlobalParam]);
 
   useEffect(() => {
     console.log(keyGlobalParam);
@@ -33,11 +32,11 @@ const Search = ({ keyGlobalParam, setKeyGlobalParam }) => {
             searchContact={"nav__search-link--anchor nav__search-link--primary"}
           />
           <SearchInput keyword={keyGlobalParam} />
-          
+
           <div className="overlay"></div>
         </div>
         <section id="search">
-          <Movies keyGlobalParam={localStorage.getItem('lastKeyword')} />
+          <Movies keyGlobalParam={localStorage.getItem("lastKeyword")} />
         </section>
       </div>
     </>

@@ -16,6 +16,7 @@ const Recommended = ({ keyGlobalParam }) => {
     console.log(localStorage.getItem("lastKeyword"));
   },[]);
 
+  useEffect(() => {
   async function getSelected() {
     const { data } = await axios.get(
       `http://www.omdbapi.com/?apikey=3fdcdaf3&s=${
@@ -26,9 +27,8 @@ const Recommended = ({ keyGlobalParam }) => {
     console.log(data);
   }
 
-  useEffect(() => {
     getSelected();
-  }, [keyGlobalParam]);
+  }, [keyGlobalParam, getKeyGlobalParam]);
 
   useEffect(() => {
     async function getRecommended() {
@@ -58,11 +58,12 @@ const Recommended = ({ keyGlobalParam }) => {
         if (movie.Genre && typeof movie.Genre === "string") {
           return movie.Genre.split(",").map((g) => g.trim());
         }
+        return null
       });
       setGenreMovies(genres);
     }
     getGenres();
-    console.log(genreMovies);
+    
   }, [recommendedMovies]);
   console.log(genreMovies[0]);
   console.log(recommendedMovies);

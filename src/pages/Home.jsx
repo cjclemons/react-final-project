@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Nav from "../components/Nav.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UndrawHomeCinema from "../movie assets/undraw_home-cinema_jdm1 scarlet red.svg";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Home = ({ setKeyGlobalParam }) => {
   let navigate = useNavigate();
@@ -15,7 +15,7 @@ const Home = ({ setKeyGlobalParam }) => {
       localStorage.setItem("lastKeyword", searchKeyword);
       
     }
-  }, [searchKeyword]);
+  }, [searchKeyword, setKeyGlobalParam]);
   function onSearch(event) {
     event.preventDefault();
     if (!searchKeyword) {
