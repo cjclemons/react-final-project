@@ -147,7 +147,7 @@ button {
 }
 
 .menu__backdrop {
-  position: absolute;
+  position: fixed;
   background-color: rgba(0, 0, 0, 0.7);
   top: 0;
   left: 0;
