@@ -5,15 +5,15 @@ import Ratings from "./Ratings";
 const SelectedMovie = ({ imdbID }) => {
   const [selected, setSelected] = useState([]);
 
-  async function getSelected() {
-    const { data } = await axios.get(
-      `http://www.omdbapi.com/?apikey=3fdcdaf3&i=${imdbID}`
-    );
-    setSelected(data);
-    console.log(data);
-  }
-
   useEffect(() => {
+    async function getSelected() {
+      const { data } = await axios.get(
+        `http://www.omdbapi.com/?apikey=3fdcdaf3&i=${imdbID}`
+      );
+      setSelected(data);
+      console.log(data);
+    }
+
     getSelected();
   }, [imdbID]);
 
